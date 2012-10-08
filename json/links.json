@@ -9,7 +9,8 @@
     "label":"Old Nugrape",
     "value":"http://icecoldnugrape.com/icecoldnugrape/index.php",
     "optional": {
-        "type": "alertseverity"
+        "type": "indicator",
+        "value": 20
     }
   }
   ,
@@ -21,7 +22,11 @@
   ,
   { 
     "label":"Jonathan Sings...Live!",
-    "value":"http://icecoldnugrape.com/jonathansingslive"
+    "value":"http://icecoldnugrape.com/jonathansingslive",
+    "optional": {
+        "type": "indicator",
+        "value": 45
+    }
   }
   ,
   { 

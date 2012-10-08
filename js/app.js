@@ -19,8 +19,9 @@ var tabSelected = function() {
                 "dojo/store/Cache",
                 "dojo/dom-attr",
                 "dojo/dom-construct",
+                "dijit/ProgressBar",
                 "dojo/domReady!"
-            ], function(Grid, Memory, ObjectStore, DataGrid, Cache, domAttr, domConstruct){
+            ], function(Grid, Memory, ObjectStore, DataGrid, Cache, domAttr, domConstruct, ProgressBar){
 
                 var testStore = Observable(JsonRest({target:"json/links.json",idProperty: "label"}));
 
@@ -41,8 +42,12 @@ var tabSelected = function() {
                                     domAttr.set(node, 'style', object.styling);
                                 }
 
-                                if(object.optional && object.optional.type && object.optional.type === 'alertseverity') {
-                                    return domConstruct.toDom("<div>hello there</div>");
+                                if(object.optional && object.optional.type && object.optional.type === 'indicator') {
+                                    var myProgressBar = new ProgressBar({
+                                        style: "width: 300px"
+                                    }).placeAt(node);
+
+                                    myProgressBar.set("value", object.optional.value % 100);
                                 }
                             }
                         }
@@ -51,16 +56,6 @@ var tabSelected = function() {
                 }, "firstdiv");
 
                 grid.set('sort', 'label', true);
-/*
-                new DataGrid({
-                    store: ObjectStore({objectStore: linkStore}),
-                    structure: [
-                        {name:"label", field:"label", width: "50%"},
-                        {name:"value", field:"value"}
-                    ],
-                    autoHeight: true
-                }, "firstdiv").startup();
- */
                 isLinkGridSetup = true;
             });
         });
