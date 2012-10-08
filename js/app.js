@@ -6,8 +6,9 @@ var tabSelected = function() {
             "dojo/store/JsonRest",
             "dojo/_base/array",
             "dojox/grid/DataGrid",
+            "dojo/store/Observable",
             "dojo/domReady!"
-        ], function( JsonRest, arrayUtil, DataGrid ) {
+        ], function( JsonRest, arrayUtil, DataGrid, Observable ) {
             var linkStore = new JsonRest({target:"json/links.json"});
 
             require([
@@ -15,20 +16,20 @@ var tabSelected = function() {
                 "dojo/store/Memory",
                 "dojo/data/ObjectStore",
                 "dojox/grid/DataGrid",
+                "dojo/store/Cache",
                 "dojo/domReady!"
-            ], function(Grid, Memory, ObjectStore, DataGrid){
+            ], function(Grid, Memory, ObjectStore, DataGrid, Cache){
 
-                var store = new ObjectStore({objectStore: linkStore});
+                var testStore = Observable(JsonRest({target:"json/links.json",idProperty: "label"}));
 
                 var grid = new Grid({
                     columns: {
                         label: "label",
                         value: "value"
                     },
-                    store: store
+                    store: testStore
                 }, "firstdiv");
 
-                grid.renderArray();
 /*
                 new DataGrid({
                     store: ObjectStore({objectStore: linkStore}),
