@@ -10,7 +10,6 @@ var tabSelected = function() {
         ], function( JsonRest, arrayUtil, DataGrid ) {
             var linkStore = new JsonRest({target:"json/links.json"});
 
-            alert('working on it');
             require([
                 "dgrid/Grid",
                 "dojo/store/Memory",
@@ -19,7 +18,6 @@ var tabSelected = function() {
                 "dojo/domReady!"
             ], function(Grid, Memory, ObjectStore, DataGrid){
 
-                alert(Grid);
                 var data = [
                     { first: "Bob", last: "Barker", age: 89 },
                     { first: "Vanna", last: "White", age: 55 },
