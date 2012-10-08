@@ -3,63 +3,39 @@ var isLinkGridSetup = false;
 var tabSelected = function() {
     if( isLinkGridSetup === false ) {
         require([
-            "dojo/store/JsonRest",
-            "dojo/_base/array",
-            "dojox/grid/DataGrid",
-            "dojo/store/Observable",
-            "dojo/domReady!"
-        ], function( JsonRest, arrayUtil, DataGrid, Observable ) {
-            var linkStore = new JsonRest({target:"json/links.json"});
-
-            require([
-                "dgrid/OnDemandGrid",
-                "dojo/store/Memory",
-                "dojo/data/ObjectStore",
-                "dojox/grid/DataGrid",
-                "dojo/store/Cache",
-                "dojo/dom-attr",
-                "dojo/dom-construct",
-                "dijit/ProgressBar",
-                "dojo/domReady!"
-            ], function(Grid, Memory, ObjectStore, DataGrid, Cache, domAttr, domConstruct, ProgressBar){
-
-                var testStore = Observable(JsonRest({target:"json/links.json",idProperty: "label"}));
-
-                var grid = new Grid({
-                    columns: [
-                        {
-                            label: "The Label",
-                            field: "label",
-                            formatter: function(value) {
-                                return '<b>' + value + '</b>';
-                            }
-                        },
-                        {
-                            label: "The value",
-                            field: "value",
-                            renderCell: function(object, value, node, options) {
-                                if(object.styling) {
-                                    domAttr.set(node, 'style', object.styling);
-                                }
-
-                                if(object.optional && object.optional.type && object.optional.type === 'indicator') {
-                                    var myProgressBar = new ProgressBar({
-                                        style: "width: 300px"
-                                    }).placeAt(node);
-
-                                    myProgressBar.set("value", object.optional.value % 100);
-                                }
-                            }
-                        }
-                    ],
-                    store: testStore
-                }, "firstdiv");
-
-                grid.set('sort', 'label', true);
-                isLinkGridSetup = true;
-            });
+            "view/GridView"
+        ], function( GridView) {
+            var gridView = new view.GridView();
+            gridView.render('firstdiv');
         });
     }
+};
+
+var handleTabEvents = function() {
+    require([
+        "dojo/ready",
+        "dojo/aspect",
+        "dijit/registry",
+        "dijit/layout/TabContainer",
+        "dijit/layout/ContentPane",
+        "view/ChartView"
+    ], function( ready, aspect, registry , ChartView) {
+        ready(function() {
+            var linkContentPanel = registry.byId("linkcontentpanel");
+            var songContentPanel = registry.byId("songcontentpanel");
+
+            // http://jsfiddle.net/phusick/Mdh4w/
+            // link tab selected
+            aspect.after(linkContentPanel, "_onShow", function() {
+                var test = new view.ChartView();
+                test.test();
+            });
+
+            // song tab selected
+            aspect.after(songContentPanel, "_onShow", function() {
+            });
+        });
+    });
 };
 
 // start here
@@ -75,6 +51,8 @@ var tabSelected = function() {
             parser.parse();
             
             tabSelected();
+
+            handleTabEvents();
         });
     });
 })();
