@@ -1,7 +1,8 @@
 [
   { 
     "label":"The Jonathan Richman Recordings Database",
-    "value":"http://jrrecordings.com"
+    "value":"http://jrrecordings.com",
+    "styling": "background-color: red"
   }
   ,
   { 
@@ -11,7 +12,8 @@
   ,
   { 
     "label":"More Surprises",
-    "value":"http://icecoldnugrape.com/moreSurprises"
+    "value":"http://icecoldnugrape.com/moreSurprises",
+    "styling": "background-color: blue"
   }
   ,
   { 
