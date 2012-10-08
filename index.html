@@ -8,6 +8,21 @@
     <link rel="stylesheet" href="css/style.css" media="screen">
     <link rel="stylesheet" href="js/lib/dojo-release-1.8.0-src/dijit/themes/claro/claro.css" media="screen">
     <link rel="stylesheet" href="js/lib/dojo-release-1.8.0-src/dojox/grid/resources/claroGrid.css" media="screen">
+    <script>
+        dojoConfig= {
+            has: {
+                "dojo-firebug": true
+            },
+            async: true,
+            packages: [
+                {
+                    name: "dgrid",
+                    location: "../dgrid"
+                }
+            ]
+        };
+    </script>
+
     <script src="js/lib/dojo-release-1.8.0-src/dojo/dojo.js"
         data-dojo-config="async:1">
     </script>
