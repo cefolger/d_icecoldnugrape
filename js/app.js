@@ -11,27 +11,24 @@ var tabSelected = function() {
             var linkStore = new JsonRest({target:"json/links.json"});
 
             require([
-                "dgrid/Grid",
+                "dgrid/OnDemandGrid",
                 "dojo/store/Memory",
                 "dojo/data/ObjectStore",
                 "dojox/grid/DataGrid",
                 "dojo/domReady!"
             ], function(Grid, Memory, ObjectStore, DataGrid){
 
-                var data = [
-                    { first: "Bob", last: "Barker", age: 89 },
-                    { first: "Vanna", last: "White", age: 55 },
-                    { first: "Pat", last: "Sajak", age: 65 }
-                ];
+                var store = new ObjectStore({objectStore: linkStore});
 
                 var grid = new Grid({
                     columns: {
-                        first: "First Name",
-                        last: "Last Name",
-                        age: "Age"
-                    }
+                        label: "label",
+                        value: "value"
+                    },
+                    store: store
                 }, "firstdiv");
-                grid.renderArray(data);
+
+                grid.renderArray();
 /*
                 new DataGrid({
                     store: ObjectStore({objectStore: linkStore}),
