@@ -18,8 +18,9 @@ var tabSelected = function() {
                 "dojox/grid/DataGrid",
                 "dojo/store/Cache",
                 "dojo/dom-attr",
+                "dojo/dom-construct",
                 "dojo/domReady!"
-            ], function(Grid, Memory, ObjectStore, DataGrid, Cache, domAttr){
+            ], function(Grid, Memory, ObjectStore, DataGrid, Cache, domAttr, domConstruct){
 
                 var testStore = Observable(JsonRest({target:"json/links.json",idProperty: "label"}));
 
@@ -38,6 +39,10 @@ var tabSelected = function() {
                             renderCell: function(object, value, node, options) {
                                 if(object.styling) {
                                     domAttr.set(node, 'style', object.styling);
+                                }
+
+                                if(object.optional && object.optional.type && object.optional.type === 'alertseverity') {
+                                    return domConstruct.toDom("<div>hello there</div>");
                                 }
                             }
                         }
