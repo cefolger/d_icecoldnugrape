@@ -1,9 +1,8 @@
 define([
-    'dojo/_base/declare'
-], function(declare){
-    return declare("store.CustomStore", [],{
-        test: function() {
-            alert('hi');
-        }
+    'dojo/_base/declare',
+    'dojo/store/JsonRest'
+], function(declare, JsonRest){
+    return declare("store.CustomStore", [JsonRest],{
+
     });
 });
