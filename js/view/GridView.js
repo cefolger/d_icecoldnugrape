@@ -15,7 +15,7 @@ define([
 ], function(declare, Grid, Memory, ObjectStore, DataGrid, Cache, domAttr, domConstruct, ProgressBar, CustomStore, Observable, Selection){
     return declare("view.GridView", [],{
         render: function(context) {
-            var testStore = Observable(CustomStore({target:"json/rows.json",idProperty: "label"}));
+            var testStore = new Observable(new CustomStore({target:"json/rows.json",idProperty: "label"}));
 
             var MyGrid = declare([Grid, Selection], {
                 renderRow: function(object, options) {
@@ -41,7 +41,7 @@ define([
 
                     return d_element;
                 };
-            }
+            };
 
             var grid = new MyGrid({
                 columns: [
@@ -60,7 +60,6 @@ define([
             }, context);
 
             grid.set('sort', 'label', true);
-            isLinkGridSetup = true;
         }
     });
 });
