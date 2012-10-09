@@ -25,33 +25,23 @@ define([
                 }
             });
 
+            var renderCell = function(index) {
+                return function(object, value, node, options) {
+                    return domConstruct.toDom('<div>' + object[index][1] + '</div>');
+                };
+            }
+
             var grid = new MyGrid({
                 columns: [
                     {
                         label: "The Label",
                         field: "label",
-                        formatter: function(value) {
-                            return '<b>' + value + '</b>';
-                        }
+                        renderCell: renderCell(0)
                     },
                     {
                         label: "The value",
                         field: "value",
-                        renderCell: function(object, value, node, options) {
-                            return domConstruct.toDom('<div>' + object[0][1] + '</div>');
-/*
-                            if(object.styling) {
-                                domAttr.set(node, 'style', object.styling);
-                            }
-
-                            if(object.optional && object.optional.type && object.optional.type === 'indicator') {
-                                var myProgressBar = new ProgressBar({
-                                    style: "width: 300px"
-                                }).placeAt(node);
-
-                                myProgressBar.set("value", object.optional.value % 100);
-                            }*/
-                        }
+                        renderCell: renderCell(1)
                     }
                 ],
                 store: testStore
