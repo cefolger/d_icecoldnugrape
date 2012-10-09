@@ -1,12 +1,24 @@
 define([
     'dojo/_base/declare',
     'dojo/store/JsonRest',
-    'dojo/request'
-], function(declare, JsonRest, request){
+    'dojo/request',
+    'dojo/_base/array'
+], function(declare, JsonRest, request, array){
     var createDataRetriever = function(data) {
+        // map columns to properly formatted values
+        var mappedColumns = array.map(data.columns, function(column) {
+            return {
+                label: 'test',
+                field: 'test'
+            };
+        });
+
         return {
             rows: function() {
                 return data.values;
+            },
+            columns: function() {
+                return mappedColumns;
             }
         };
     };

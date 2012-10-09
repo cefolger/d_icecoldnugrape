@@ -1,4 +1,8 @@
 {
+    "columns": [
+        ["firstName", "First Name", ""],
+        ["lastName", "Last Name", ""]
+    ],
     "values": [
         [
             ["value1", "here is a value", ""],

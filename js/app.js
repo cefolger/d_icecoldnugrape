@@ -10,7 +10,7 @@ var tabSelected = function() {
             var testData = new data.TestData();
 
             testData.getData(function(results) {
-                console.log(results.rows());
+                console.log(results.columns());
             });
             gridView.render('firstdiv');
         });
