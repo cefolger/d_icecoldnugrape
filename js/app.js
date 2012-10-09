@@ -3,9 +3,15 @@ var isLinkGridSetup = false;
 var tabSelected = function() {
     if( isLinkGridSetup === false ) {
         require([
-            "view/GridView"
-        ], function( GridView) {
+            "view/GridView",
+            "data/TestData"
+        ], function( GridView, TestData) {
             var gridView = new view.GridView();
+            var testData = new data.TestData();
+
+            testData.getData(function(results) {
+                console.log(results.rows());
+            });
             gridView.render('firstdiv');
         });
     }
