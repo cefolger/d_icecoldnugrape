@@ -25,7 +25,21 @@ define([
 
             var renderCell = function(index) {
                 return function(object, value, node, options) {
-                    return domConstruct.toDom('<div>' + object[index][1] + '</div>');
+                    var currentValue = object[index];
+
+                    var d_element = domConstruct.toDom('<div>' + currentValue[1] + '</div>');
+                    domAttr.set(d_element, 'style', currentValue[2]);
+
+                    if(currentValue[3] && currentValue[3].type === 'indicator') {
+                        d_element.innerHTML = '';
+                        var d_progressBar = new ProgressBar({
+                            style: "width: 300px"
+                        }).placeAt(d_element);
+
+                        d_progressBar.set('value', currentValue[3].value);
+                    }
+
+                    return d_element;
                 };
             }
 
