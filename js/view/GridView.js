@@ -15,9 +15,15 @@ define([
 ], function(declare, Grid, Memory, ObjectStore, DataGrid, Cache, domAttr, domConstruct, ProgressBar, CustomStore, Observable, Selection){
     return declare("view.GridView", [],{
         render: function(context) {
-            var testStore = Observable(CustomStore({target:"json/links.json",idProperty: "label"}));
+            var testStore = Observable(CustomStore({target:"json/test.json",idProperty: "label"}));
 
-            var MyGrid = declare([Grid, Selection]);
+            var MyGrid = declare([Grid, Selection], {
+                renderRow: function(object, options) {
+                    console.log(arguments);
+
+                    return this.inherited(arguments);
+                }
+            });
 
             var grid = new MyGrid({
                 columns: [
@@ -32,6 +38,8 @@ define([
                         label: "The value",
                         field: "value",
                         renderCell: function(object, value, node, options) {
+                            return domConstruct.toDom('<div>' + object[0][1] + '</div>');
+/*
                             if(object.styling) {
                                 domAttr.set(node, 'style', object.styling);
                             }
@@ -42,7 +50,7 @@ define([
                                 }).placeAt(node);
 
                                 myProgressBar.set("value", object.optional.value % 100);
-                            }
+                            }*/
                         }
                     }
                 ],

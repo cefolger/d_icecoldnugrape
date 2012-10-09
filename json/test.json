@@ -1,10 +1,10 @@
-{
-    "columns": [
-        ["foo", "foo column", ""]
+[
+    [
+        ["value1", "here is a value", ""],
+        ["value2", "here is a value 2", ""]
     ],
-    "values": [
-        [
-            ["value1", "here is a value", ""]
-        ]
+    [
+        ["value2", "here is another value", ""],
+        ["value2", "here is a value 2", ""]
     ]
-}
+]
