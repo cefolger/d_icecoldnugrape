@@ -15,12 +15,10 @@ define([
 ], function(declare, Grid, Memory, ObjectStore, DataGrid, Cache, domAttr, domConstruct, ProgressBar, CustomStore, Observable, Selection){
     return declare("view.GridView", [],{
         render: function(context) {
-            var testStore = Observable(CustomStore({target:"json/test.json",idProperty: "label"}));
+            var testStore = Observable(CustomStore({target:"json/rows.json",idProperty: "label"}));
 
             var MyGrid = declare([Grid, Selection], {
                 renderRow: function(object, options) {
-                    console.log(arguments);
-
                     return this.inherited(arguments);
                 }
             });
