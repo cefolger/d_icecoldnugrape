@@ -10,15 +10,18 @@ define([
     "dijit/ProgressBar",
     "dojo/store/JsonRest",
     "dojo/store/Observable",
+    "dgrid/Selection",
     "dojo/domReady!"
-], function(declare, Grid, Memory, ObjectStore, DataGrid, Cache, domAttr, domConstruct, ProgressBar, JsonRest, Observable){
+], function(declare, Grid, Memory, ObjectStore, DataGrid, Cache, domAttr, domConstruct, ProgressBar, JsonRest, Observable, Selection){
     return declare("view.GridView", [],{
         render: function(context) {
             var linkStore = new JsonRest({target:"json/links.json"});
 
             var testStore = Observable(JsonRest({target:"json/links.json",idProperty: "label"}));
 
-            var grid = new Grid({
+            var MyGrid = declare([Grid, Selection]);
+
+            var grid = new MyGrid({
                 columns: [
                     {
                         label: "The Label",

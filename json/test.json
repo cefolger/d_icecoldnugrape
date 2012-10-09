@@ -1,0 +1,10 @@
+{
+    "columns": [
+        ["foo", "foo column", ""]
+    ],
+    "values": [
+        [
+            ["value1", "here is a value", ""]
+        ]
+    ]
+}
