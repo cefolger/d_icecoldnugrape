@@ -6,13 +6,16 @@ var tabSelected = function() {
             "view/GridView",
             "data/TestData"
         ], function( GridView, TestData) {
-            var gridView = new view.GridView();
             var testData = new data.TestData();
 
             testData.getData(function(results) {
-                console.log(results.columns());
+                var gridView = new view.GridView({
+                    retriever: results
+                });
+
+                gridView.render('firstdiv');
             });
-            gridView.render('firstdiv');
+
         });
     }
 };

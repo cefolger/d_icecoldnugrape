@@ -13,7 +13,14 @@ define([
     "dgrid/Selection",
     "dojo/domReady!"
 ], function(declare, Grid, Memory, ObjectStore, DataGrid, Cache, domAttr, domConstruct, ProgressBar, CustomStore, Observable, Selection){
+    var dataRetriever;
+
     return declare("view.GridView", [],{
+
+        constructor: function(args) {
+            dataRetriever = args.retriever;
+        },
+
         render: function(context) {
             var testStore = new Observable(new CustomStore({target:"json/rows.json",idProperty: "label"}));
 

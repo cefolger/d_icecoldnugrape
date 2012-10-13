@@ -8,8 +8,8 @@ define([
         // map columns to properly formatted values
         var mappedColumns = array.map(data.columns, function(column) {
             return {
-                label: 'test',
-                field: 'test'
+                label: column[1],
+                field: column[0]
             };
         });
 
