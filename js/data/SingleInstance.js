@@ -1,10 +1,11 @@
 define([
-    'data/Producer',
+    'exports',
+    './Producer',
     'dojo/_base/declare',
     'dojo/store/JsonRest',
     'dojo/request',
     'dojo/_base/array'
-], function(Producer) {
+], function(exports, Producer) {
     return {
         setState:function (state) {
             this._state = state;
