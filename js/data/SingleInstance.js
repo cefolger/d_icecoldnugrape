@@ -1,13 +1,15 @@
 define([
+    'data/Producer',
     'dojo/_base/declare',
     'dojo/store/JsonRest',
     'dojo/request',
     'dojo/_base/array'
-], function() {
+], function(Producer) {
     return {
         setState:function (state) {
             this._state = state;
             console.log('set state', this._state);
+            console.log('Producer', Producer);
         },
 
         getState:function () {
